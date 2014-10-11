@@ -17,7 +17,11 @@ MyApp.addInitializer(function(options){
 	MyApp.vent.trigger('routing:started');
 	Backbone.history.start();
 
-	Backbone.history.navigate('home', true);
+	if(Backbone.history.fragment == '') {
+
+		Backbone.history.navigate('home', true);
+
+	}
 
 });
 

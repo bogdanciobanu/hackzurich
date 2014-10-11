@@ -20,7 +20,8 @@ grunt.initConfig({
       'hackzurich/app/js/models/*.js', 'hackzurich/app/js/collections/*.js',
       'hackzurich/app/js/views/*.js', 'hackzurich/app/js/controllers/*.js',
       'hackzurich/app/js/*.js', '!hackzurich/app/js/dist.js'],
-      dest: 'dist/js/dist.con.js'
+      dest: 'hackzurich/app/js/dist.js'
+      // dest: 'dist/js/dist.con.js'
     },
     local: {
       src: ['hackzurich/app/js/lib/**/*.js', 'hackzurich/app/js/helpers/*.js',
@@ -149,7 +150,8 @@ grunt.initConfig({
   grunt.registerTask('default', ['connect', 'watch']);
   // grunt.registerTask('default', ['watch']);
   // grunt.registerTask('build', ['sass', 'jst', 'concat:js', 'uglify', 'imagemin', 'prompt', 'gitcommit', 'gitpush', 'ftp-deploy']);
-  grunt.registerTask('build', ['concat:js', 'uglify', 'imagemin']);
+  // grunt.registerTask('build', ['jst', 'concat:js', 'uglify', 'imagemin']);
+  grunt.registerTask('build', ['jst', 'concat:js', 'imagemin']);
 
   // grunt.registerTask('git', ['prompt', 'gitcommit', 'gitpush']);
 

@@ -11,13 +11,15 @@ var MainController = Marionette.Controller.extend({
 		var homeView = new HomeView({});
 		homeView.render();
 	},
-	lists: function(id) {
+	shopping: function(id) {
+		console.log('shopping route');
+		var shoppingView = new ShoppingView({});
+		shoppingView.render();
+	},
+	tracks: function(id) {
 
 	},
-	products: function(id) {
-
-	},
-	friends: function(id) {
+	rankings: function(id) {
 
 	}
 });
