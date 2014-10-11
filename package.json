@@ -1,0 +1,21 @@
+{
+  "name": "mind-your-self",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-concat": "",
+    "grunt-contrib-uglify": "",
+    "grunt-contrib-imagemin": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-watch": "",
+    "grunt-contrib-jst": "",
+    "load-grunt-tasks": "",
+    "grunt-git": "",
+    "grunt-prompt": "",
+    "grunt-contrib-connect": "",
+    "grunt-newer": "",
+    "grunt-sass": "",
+    "node-bourbon": "",
+    "grunt-ftp-deploy": ""
+  }
+}
