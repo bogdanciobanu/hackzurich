@@ -12,6 +12,7 @@ var Router = Backbone.Marionette.AppRouter.extend({
 		'products/:id': 'products',
 		'friends/': 'friends',
 		'friends/:id': 'friends',
+		'default': 'home'
 	},
 	// onRoute: function(name, path, args) {
 	// }

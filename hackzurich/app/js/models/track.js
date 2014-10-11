@@ -1,4 +1,4 @@
-ListModel = Backbone.Model.extend({
+TrackModel = Backbone.Model.extend({
   
 	initialize: function() {
 	}

@@ -1,4 +1,4 @@
 ListCollection = Backbone.Collection.extend({
-  model: ListModel,
+  model: ListItemModel,
   url: 'api'
 });

@@ -4,10 +4,10 @@ var MainController = Marionette.Controller.extend({
 		window.mainView = new MainView({});
 
 		window.headerView = new HeaderView({});
-
 	},
 	home: function() {
-
+		console.log('home route');
+		window.tracks.fetchData();
 	},
 	lists: function(id) {
 
