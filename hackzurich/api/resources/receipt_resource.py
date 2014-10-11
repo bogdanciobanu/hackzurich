@@ -23,14 +23,7 @@ class ReceiptResource(MongoDBResource):
     def get_collection(self):
         return Receipt._get_collection()
 
-    def obj_get(self, pk, bundle):
-        from ipdb import set_trace; set_trace()
-
-    def get_data(self):
-        from ipdb import set_trace; set_trace()
-
     def get_list(self, request, **kwargs):
-        from ipdb import set_trace; set_trace()
         if 'client_id' not in request.GET:
             raise Exception('No receipt_id specified')
 
