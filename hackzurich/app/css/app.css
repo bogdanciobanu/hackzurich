@@ -1,3 +1,49 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*** Headers ***/
+
+h1, h2, h3 {
+	text-transform: uppercase;
+}
+
+h1 {
+	color: #99FA84;
+	font-weight: 700;
+}
+
+h2 {
+	color: #0A790A;
+	font-weight: 500;
+}
+
+h3 {
+	color: #333;
+	font-weight: 500;
+}
+
+/*** header ***/
+.header {
+	background: #51B851;
+}
+
+/*** Sections ***/
+
+.tracks {
+	background: #D5FFCC;
+}
+
+.shopping {
+	background: #99FA84;
+}
+
+.rankings {
+	background: #FFFFFF;
+}
+
+/*** Graph ***/
+
 .axis path,
 .axis line {
   fill: none;

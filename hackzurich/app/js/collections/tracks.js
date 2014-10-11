@@ -9,12 +9,12 @@ TracksCollection = Backbone.Collection.extend({
 
 	  	var sum = 0;
 		for (i in data) {
-		    sum += data[i]['id'];
+			sum += parseInt(data[i]['id']);
 		}
 
 		window.app.set({'footprint-total': sum});
 
-		console.log(window.app.get('footprint-total'));
+		// console.log(window.app.get('footprint-total'));
   	}});
   }
 });
