@@ -10,22 +10,26 @@ body {
 
 h1, h2, h3 {
 	text-transform: uppercase;
-	margin: 0px;
-	padding: 10px;
+/*	margin: 0px;
+	padding: 10px;*/
 }
 
 h1 {
 	color: #99FA84;
+	font-size: 18px;
 	font-weight: 700;
+	letter-spacing: 0.25em;
 }
 
 h2 {
 	color: #0A790A;
+	font-size: 18px;
 	font-weight: 600;
 }
 
 h3 {
 	color: #333;
+	font-size: 12px;
 	font-weight: 600;
 }
 
@@ -34,18 +38,64 @@ h3 {
 	background: #51B851;
 }
 
+.back {
+	display: none;
+}
+
 /*** Sections ***/
+
+.track, .shopping, .rankings {
+	height: 300px;
+	position: relative;
+}
 
 .track {
 	background: #D5FFCC;
+}
+
+.track .trend {
+	text-align: right;
+}
+
+.track .trend, .track .state {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.track .footprint {
+	font-size: 24px;
 }
 
 .shopping {
 	background: #99FA84;
 }
 
+.shopping .products {
+	padding-left: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.shopping .product {
+	background: #fff;
+	border-radius: 75px;
+	float: left;
+	height: 75px;
+	margin-left: 15px;
+	width: 75px;
+}
+
+.shopping .product:first-child {
+	margin-left: 0;
+}
+
 .rankings {
-	background: #FFFFFF;
+	background: #fff;
+}
+
+
+.row-fluid {
+	overflow: hidden;
 }
 
 .container-fluid{
@@ -75,16 +125,25 @@ h3 {
 /*** Shapes ***/
 
 .arrow {
-	border-radius: 100px;
+	border-radius: 50%;
     position: absolute;
+    height: 40px;
     right: 20px;
-    width: 20px;
+    top: 100%;
+    padding-top: 10px;
     text-align: center;
+    width: 40px;
+    z-index: 10000;
 }
 
 .arrow-white {
-	background-color: #ffffff;	
+	background-color: #fff;	
 }	
 .arrow-green {	
 	background-color: #d5ffcc;
+}
+
+.fa-chevron-right {
+	color: #51B851;
+	font-size: 20px;
 }

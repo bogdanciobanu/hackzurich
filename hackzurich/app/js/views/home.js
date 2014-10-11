@@ -5,6 +5,7 @@ HomeView = Backbone.Marionette.ItemView.extend({
     	$(this.el).empty();
     	window.headerView.model = new DataModel({'title': 'CarbonLess', 'back': '', 'visible': ''});
     	window.headerView.render();
-		$(this.el).append(window.JST[this.template]());
+    	console.log(window.app);
+		$(this.el).append(window.JST[this.template](window.app.toJSON()));
     }
 });
