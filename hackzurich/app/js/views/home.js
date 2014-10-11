@@ -3,9 +3,12 @@ HomeView = Backbone.Marionette.ItemView.extend({
 	el: '#container',
     render: function() {
     	$(this.el).empty();
-    	window.headerView.model = new DataModel({'title': 'CarbonLess', 'back': '', 'visible': ''});
+    	window.headerView.model = new DataModel({'title': 'Carbon<span class="h1-slim">Less</span>', 'back': '', 'visible': ''});
     	window.headerView.render();
     	console.log(window.app);
-		$(this.el).append(window.JST[this.template](window.app.toJSON()));
+    	var jsonData = {};
+    	$.extend(jsonData, window.recommendation.toJSON(), window.app.toJSON());
+    	console.log(jsonData);
+		$(this.el).append(window.JST[this.template]({data: jsonData}));
     }
 });
