@@ -2,6 +2,10 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
+.container-fluid {
+	padding: 0;
+}
+
 /*** Headers ***/
 
 h1, h2, h3 {
