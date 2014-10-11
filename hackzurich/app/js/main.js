@@ -23,9 +23,11 @@ MyApp.addInitializer(function(options){
 
 $(document).ready(function() {
 
+	window.list = new ListCollection();
+
 	window.tracks = new TracksCollection();
 
-	window.list = new ListCollection();
+	window.tracks.fetchData();
 
 	MyApp.start();
 

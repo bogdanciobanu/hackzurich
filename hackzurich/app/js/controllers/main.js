@@ -4,10 +4,12 @@ var MainController = Marionette.Controller.extend({
 		window.mainView = new MainView({});
 
 		window.headerView = new HeaderView({});
+
 	},
 	home: function() {
 		console.log('home route');
-		window.tracks.fetchData();
+		var homeView = new HomeView({});
+		homeView.render();
 	},
 	lists: function(id) {
 
@@ -17,5 +19,5 @@ var MainController = Marionette.Controller.extend({
 	},
 	friends: function(id) {
 
-	},
+	}
 });

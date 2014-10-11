@@ -1,7 +1,9 @@
 HeaderView = Backbone.Marionette.ItemView.extend({
-	template: 'header',
-	el: 'body',
+	template: '_header',
+	el: '#container',
     render: function() {
-		// $(this.el).append(window.JST[this.template]());
+    	console.log('render header');
+    	// console.log(this.model.toJSON());
+		// $(this.el).append(window.JST[this.template](this.model.toJSON()));
     }
 });
