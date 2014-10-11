@@ -9324,20 +9324,14 @@ TracksCollection = Backbone.Collection.extend({
   model: TrackModel,
   // url: 'http://api.autoidlabs.ch/brands?search=',
   url: 'data/brands.json',
-  fetchData: function() {
-  	var self = this;
-  	this.fetch({success: function (model, data) {
-	  	console.log(data[0]['id']);
+  computeFootprint: function(data) {
 
-	  	var sum = 0;
+	  var sum = 0;
 		for (i in data) {
 			sum += parseInt(data[i]['id']);
 		}
 
-		window.app.set({'footprint-total': sum});
-
-		// console.log(window.app.get('footprint-total'));
-  	}});
+  	window.app.set({'footprint_total': sum});
   }
 });
 HeaderView = Backbone.Marionette.ItemView.extend({
@@ -9354,7 +9348,8 @@ HomeView = Backbone.Marionette.ItemView.extend({
     	$(this.el).empty();
     	window.headerView.model = new DataModel({'title': 'CarbonLess', 'back': '', 'visible': ''});
     	window.headerView.render();
-		$(this.el).append(window.JST[this.template]());
+    	console.log(window.app);
+		$(this.el).append(window.JST[this.template](window.app.toJSON()));
     }
 });
 MainView = Backbone.Marionette.ItemView.extend({
@@ -9437,8 +9432,6 @@ MyApp = new Backbone.Marionette.Application();
 
 MyApp.addInitializer(function(options){
 
-	window.app = new AppModel();
-
 	window.router = new Router({
 	});
 	MyApp.vent.trigger('routing:started');
@@ -9450,17 +9443,25 @@ MyApp.addInitializer(function(options){
 
 	}
 
+
 });
 
 $(document).ready(function() {
+
+	window.app = new AppModel();
 
 	window.list = new ListCollection();
 
 	window.tracks = new TracksCollection();
 
-	window.tracks.fetchData();
+	window.tracks.fetch({success: function (model, data) {
 
-	MyApp.start();
+		// Compute the footprint, before the app is up
+		window.tracks.computeFootprint(data);
+
+		MyApp.start();
+
+	}});
 
 });
 var Router = Backbone.Marionette.AppRouter.extend({
@@ -9488,13 +9489,13 @@ this["JST"]["_header"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<header class="row-fluid header">\n\t<a href="' +
+__p += '<header class="row-fluid header">\n\t<div class="col-xs-12">\n\t\t<a href="' +
 ((__t = ( back )) == null ? '' : __t) +
 '" class="back ' +
 ((__t = ( visible )) == null ? '' : __t) +
-'"><span class="fa fa-chevron-left"></span></a>\n    <h1>' +
+'"><span class="fa fa-chevron-left"></span></a>\n\t    <h1>' +
 ((__t = ( title )) == null ? '' : __t) +
-'</h1>\n</header>';
+'</h1>\n    </div>\n</header>';
 
 }
 return __p
@@ -9504,7 +9505,9 @@ this["JST"]["home"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '    <section class="row-fluid track">\n\t\t<h2>track</h2>\n\n\t\t<div class="span12">\n\t\t\t<div class="row-fluid">\n\t\t\t\t<div class="span6">\n\t\t\t\t\t<h3>current state</h3>\n\t\t\t\t\t\n\t\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class="span6"><h3>your trend</h3>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n    </section>\n\n    <section class="row-fluid shopping">\n      <h2>go shopping</h2>\n      <div class="span12">\n\n\t\t<div class="arrow arrow-white">\n\t\t<i class="fa fa-chevron-right"></i>\n      </div>\n    </section>\n\n\n    <section class="row-fluid ranking">\n\t\t<h2>Your Rankings</h2>\n\t\t<div class="span12">\n\t\t\n\t\t\n\t\t<div class="arrow arrow-green">\n\t\t<i class="fa fa-chevron-right"></i>\n\t\t</div>\n      </div>\n    </section>';
+__p += '    <section class="row-fluid track">\n\n\t\t<div class="col-xs-12">\n\t\t<h2>track</h2>\n\t\t\t<div class="row-fluid">\n\t\t\t\t<div class="col-xs-6 state">\n\t\t\t\t\t<h3>current state</h3>\n\t\t\t\t\t\n\t\t\t\t\t<span class="footprint">' +
+((__t = ( footprint_total )) == null ? '' : __t) +
+' Kg CO<sub>2</sub></span>\n\n\t\t\t\t</div>\n\t\t\t\t<div class="col-xs-6 trend"><h3>your trend</h3>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<div class="arrow arrow-white">\n\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t</div>\n\t\n\t\t</div>\n    </section>\n\n    <section class="row-fluid shopping">\n      <div class="col-xs-12">\n\t      <h2>go shopping</h2>\n\t\t\t\t\n\t\t\t\t<ul class="products">\n\t\t\t\t\t<li class="product"><img src="" alt=""></li>\n\t\t\t\t\t<li class="product"><img src="" alt=""></li>\n\t\t\t\t\t<li class="product"><img src="" alt=""></li>\n\t\t\t\t</ul>\n\n\t\t\t\t<h3>new product recommendations for you</h3>\n\n\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t      </div>\n      </div>\n    </section>\n\n\n    <section class="row-fluid ranking">\n\t\t\t<div class="col-xs-12">\n\t\t\t\t<h2>Your Rankings</h2>\n\t\t\t\t<div class="arrow arrow-green">\n\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t</div>\n      </div>\n    </section>';
 
 }
 return __p
