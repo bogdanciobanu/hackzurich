@@ -1,3 +1,5 @@
+from mongoengine import connect
+
 """
 Django settings for hackzurich project.
 
@@ -81,3 +83,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Connect mongoengine to the mongodb server
+connect('hackzurich', host='ds039020.mongolab.com', port=39020,
+        username='hackzurich', password='pass')

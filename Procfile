@@ -1,0 +1,1 @@
+web: gunicorn hackzurich.wsgi --log-file -
