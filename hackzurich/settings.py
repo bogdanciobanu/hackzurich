@@ -85,4 +85,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Connect mongoengine to the mongodb server
-connect('hackzurich')
+connect('hackzurich', host='ds039020.mongolab.com', port=39020,
+        username='hackzurich', password='pass')
