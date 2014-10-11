@@ -6,6 +6,9 @@ body {
 	padding: 0;
 }
 
+/*** Links ***/
+
+
 /*** Headers ***/
 
 h1, h2, h3 {
@@ -49,6 +52,10 @@ h3 {
 	position: relative;
 }
 
+.track a, .shopping a, .ranking a {
+	display: block;
+}
+
 .track {
 	background: #D5FFCC;
 }
@@ -62,8 +69,9 @@ h3 {
 	padding-right: 0;
 }
 
-.track .footprint {
+.track .footprint, .shopping .recommendation {
 	font-size: 24px;
+	color: #333;
 }
 
 .shopping {
@@ -74,20 +82,28 @@ h3 {
 	padding-left: 0;
 	list-style: none;
 	overflow: hidden;
+	margin: 40px 0;
 }
 
 .shopping .product {
-	background: #fff;
-	border-radius: 75px;
+	background: #fff no-repeat 50% 50%;
+	background-size: 50%;
+	border-radius: 100px;
 	float: left;
-	height: 75px;
-	margin-left: 15px;
-	width: 75px;
+	height: 100px;
+	margin-left: 35px;
+	width: 100px;
 }
+
 
 .shopping .product:first-child {
 	margin-left: 0;
 }
+
+/*.shopping .product img {
+	max-height: 75px;
+	max-width: 75px;
+}*/
 
 .rankings {
 	background: #fff;
@@ -129,7 +145,7 @@ h3 {
     position: absolute;
     height: 40px;
     right: 20px;
-    top: 100%;
+    top: 130px;
     padding-top: 10px;
     text-align: center;
     width: 40px;

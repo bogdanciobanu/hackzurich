@@ -32,12 +32,18 @@ $(document).ready(function() {
 
 	window.tracks = new TracksCollection();
 
+	window.recommendation = new RecommendationModel();
+
 	window.tracks.fetch({success: function (model, data) {
 
 		// Compute the footprint, before the app is up
 		window.tracks.computeFootprint(data);
 
-		MyApp.start();
+		window.recommendation.fetch({success: function (model, data) {
+
+			MyApp.start();
+
+		}});
 
 	}});
 
