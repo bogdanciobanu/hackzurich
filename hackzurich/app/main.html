@@ -63,7 +63,7 @@
     </section>
 
 
-  </div>
+ </div>
 
 	<!-- scripts -->
 	<script src="js/dist.js"></script>
@@ -95,7 +95,16 @@
 	var line = d3.svg.line()
 		.interpolate("basis")
 		.x(function(d) { return x(d.date); })
-		.y(function(d) { return y(d.temperature); });
+		.y(function(d) { return y(d.amount); });
+		
+	//areastuff
+	var  area = d3.svg.area()
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.colortemp); });
+	
+
+
 
 	var svg = d3.select("body").append("svg")
 		.attr("width", width + margin.left + margin.right)
@@ -108,13 +117,14 @@
 
 	  data.forEach(function(d) {
 		d.date = parseDate(d.date);
+		d.colortemp = +d.colortemp;
 	  });
 
-	  var cities = color.domain().map(function(name) {
+	  var users = color.domain().map(function(name) {
 		return {
 		  name: name,
 		  values: data.map(function(d) {
-			return {date: d.date, temperature: +d[name]};
+			return {date: d.date, amount: +d[name]};
 		  })
 		};
 	  });
@@ -122,14 +132,41 @@
 	  x.domain(d3.extent(data, function(d) { return d.date; }));
 
 	  y.domain([
-		d3.min(cities, function(c) { return d3.min(c.values, function(v) { return v.temperature; }); }),
-		d3.max(cities, function(c) { return d3.max(c.values, function(v) { return v.temperature; }); })
+		d3.min(users, function(c) { return d3.min(c.values, function(v) { return v.amount; }); }),
+		d3.max(users, function(c) { return d3.max(c.values, function(v) { return v.amount; }); }),
+		
+		//areastuff
+		d3.extent(data, function(d) { return d.colortemp; })
+	  
 	  ]);
 
+	  
+	 
+	 //areastuff
+	  svg.append("linearGradient")
+      .attr("id", "colortemp-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0).attr("y1", y(50))
+      .attr("x2", 0).attr("y2", y(60))
+    .selectAll("stop")
+      .data([
+        {offset: "0%", color: "steelblue"},
+        {offset: "50%", color: "gray"},
+        {offset: "100%", color: "red"}
+      ])
+    .enter().append("stop")
+      .attr("offset", function(d) { return d.offset; })
+      .attr("stop-color", function(d) { return d.color; });
+	  
+	  
+	  
+	  
+	  
 	  svg.append("g")
 		  .attr("class", "x axis")
 		  .attr("transform", "translate(0," + height + ")")
 		  .call(xAxis);
+		 
 
 	  svg.append("g")
 		  .attr("class", "y axis")
@@ -141,24 +178,16 @@
 		  .style("text-anchor", "end")
 		  .text("C02 (kg)");
 		  
-		// Add the area path.
-		svg.append("path")
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
 		.attr("class", "area")
-		.attr("clip-path", "url(#clip)")
-		.attr("d", area(values));
-
+		.attr("d", area);
 
 		var friends = svg.selectAll(".friends")
-		  .data(cities)
+		  .data(users)
 		.enter().append("g")
 		  .attr("class", "friends");
-		  
-		  // An area generator, for the light fill.
-		var area = d3.svg.area()
-			.interpolate("monotone")
-			.x(function(d) { return x(d.date); })
-			.y0(height)
-			.y1(function(d) { return y(d.price); });
 
 		friends.append("path")
 		  .attr("class", "line")
@@ -167,7 +196,7 @@
 
 		friends.append("text")
 		  .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
-		  .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+		  .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.amount) + ")"; })
 		  .attr("x", 3)
 		  .attr("dy", ".35em")
 		  .text(function(d) { return d.name; });
