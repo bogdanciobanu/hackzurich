@@ -12,28 +12,28 @@ grunt.initConfig({
   },
   concat: {
     css: {
-      src: ['app/css/*.css'],
+      src: ['hackzurich/app/css/*.css'],
       dest: 'dist/css/dist.css'
     },
     js: {
-      src: ['app/js/lib/**/*.js', 'app/js/helpers/*.js',
-      'app/js/models/*.js', 'app/js/collections/*.js',
-      'app/js/views/*.js', 'app/js/controllers/*.js',
-      'app/js/*.js', '!app/js/dist.js'],
+      src: ['hackzurich/app/js/lib/**/*.js', 'hackzurich/app/js/helpers/*.js',
+      'hackzurich/app/js/models/*.js', 'hackzurich/app/js/collections/*.js',
+      'hackzurich/app/js/views/*.js', 'hackzurich/app/js/controllers/*.js',
+      'hackzurich/app/js/*.js', '!hackzurich/app/js/dist.js'],
       dest: 'dist/js/dist.con.js'
     },
     local: {
-      src: ['app/js/lib/**/*.js', 'app/js/helpers/*.js',
-      'app/js/models/*.js', 'app/js/collections/*.js',
-      'app/js/views/*.js', 'app/js/controllers/*.js',
-      'app/js/*.js', '!app/js/dist.js'],
-      dest: 'app/js/dist.js'
+      src: ['hackzurich/app/js/lib/**/*.js', 'hackzurich/app/js/helpers/*.js',
+      'hackzurich/app/js/models/*.js', 'hackzurich/app/js/collections/*.js',
+      'hackzurich/app/js/views/*.js', 'hackzurich/app/js/controllers/*.js',
+      'hackzurich/app/js/*.js', '!hackzurich/app/js/dist.js'],
+      dest: 'hackzurich/app/js/dist.js'
     }
   },
   uglify: {
     dist: {
       files: {
-        'app/js/dist.js': ['dist/js/dist.con.js']
+        'hackzurich/app/js/dist.js': ['dist/js/dist.con.js']
       }
     }
   },
@@ -44,20 +44,20 @@ grunt.initConfig({
     dist: {
       files: [{
         expand: true,
-        cwd: 'app/_images',
+        cwd: 'hackzurich/app/_images',
         src: ['**/*.{png,jpg,gif}'],
-        dest: 'app/images'
+        dest: 'hackzurich/app/images'
       }]
     }
   },
   sass: {
       dist: {
           options: {
-              includePaths: ['app/scss/inc', require('node-bourbon').includePaths],
+              includePaths: ['hackzurich/app/scss/inc', require('node-bourbon').includePaths],
               outputStyle: 'compressed'
           },
           files: {
-              'app/css/main.css': 'app/scss/main.scss'
+              'hackzurich/app/css/main.css': 'hackzurich/app/scss/main.scss'
           }
       }
   },
@@ -66,15 +66,15 @@ grunt.initConfig({
       // livereload: true
     },
     css: {
-      files: 'app/**/*.scss',
+      files: 'hackzurich/app/**/*.scss',
       tasks: ['sass']
     },
     templates: {
-      files: 'app/templates/*.html',
+      files: 'hackzurich/app/templates/*.html',
       tasks: ['jst']
     },
     js: {
-      files: ['app/**/*.js', '!app/js/dist.js'],
+      files: ['hackzurich/app/**/*.js', '!hackzurich/app/js/dist.js'],
       tasks: ['concat:local']
     }
   },
@@ -84,7 +84,7 @@ grunt.initConfig({
         message: ''
       },
       files: {
-          src: ['*.*', 'app/**/*', 'dist/**/*']
+          src: ['*.*', 'hackzurich/app/**/*', 'dist/**/*']
       }
     }
   },
@@ -118,7 +118,7 @@ grunt.initConfig({
         }
       },
       files: {
-        'app/js/templates.js': ['app/templates/**/*.html']
+        'hackzurich/app/js/templates.js': ['hackzurich/app/templates/**/*.html']
       }
     }
   },
