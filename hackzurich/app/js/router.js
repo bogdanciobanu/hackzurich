@@ -9,7 +9,7 @@ var Router = Backbone.Marionette.AppRouter.extend({
 		'lists': 'lists',
 		'lists/:id': 'lists',
 		'products': 'products',
-		'products/:id': 'produccts',
+		'products/:id': 'products',
 		'friends/': 'friends',
 		'friends/:id': 'friends',
 	},

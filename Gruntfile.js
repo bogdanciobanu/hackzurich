@@ -6,7 +6,7 @@ grunt.initConfig({
     server: {
       options: {
         port: 3000,
-        base: 'app'
+        base: 'hackzurich/app'
       }
     }
   },
@@ -129,9 +129,9 @@ grunt.initConfig({
       port: 21,
       authKey: 'ba'
     },
-    src: 'app',
+    src: 'hackzurich/app',
     dest: '.',
-    exclusions: ['**/.DS_Store', '**/Thumbs.db', 'video']
+    exclusions: ['**/.DS_Store', '**/Thumbs.db']
   }
 }
   });
@@ -149,7 +149,7 @@ grunt.initConfig({
   grunt.registerTask('default', ['connect', 'watch']);
   // grunt.registerTask('default', ['watch']);
   // grunt.registerTask('build', ['sass', 'jst', 'concat:js', 'uglify', 'imagemin', 'prompt', 'gitcommit', 'gitpush', 'ftp-deploy']);
-  grunt.registerTask('build', ['concat:js', 'uglify', 'imagemin', 'prompt', 'gitcommit', 'gitpush']);
+  grunt.registerTask('build', ['concat:js', 'uglify', 'imagemin']);
 
   // grunt.registerTask('git', ['prompt', 'gitcommit', 'gitpush']);
 

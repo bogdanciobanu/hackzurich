@@ -6,22 +6,16 @@ var MainController = Marionette.Controller.extend({
 		window.headerView = new HeaderView({});
 
 	},
-	lists: function() {
+	home: function() {
 
 	},
-	lists: function() {
+	lists: function(id) {
 
 	},
-	products: function() {
+	products: function(id) {
 
 	},
-	products: function() {
-
-	},
-	friends: function() {
-
-	},
-	friends: function() {
+	friends: function(id) {
 
 	},
 });
