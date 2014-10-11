@@ -176,3 +176,9 @@ a.track, a.shopping, a.ranking {
 	color: #51B851;
 	font-size: 20px;
 }
+
+.fa-arrow-right {
+	font-size: 30px;
+	margin-right: 20px;
+	color: #51B851;
+}

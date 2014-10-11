@@ -20,9 +20,9 @@ this["JST"]["home"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '    <a class="row-fluid track" href="#tracks">\n\t\t\t<div class="col-xs-12">\n\t\t\t\t<h2>Tracking</h2>\n\t\t\t\t\t<div class="row-fluid">\n\t\t\t\t\t\t<div class="col-xs-6 state">\n\t\t\t\t\t\t\t<h3>current state</h3>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<span class="footprint">' +
+__p += '    <a class="row-fluid track" href="#tracks">\n\t\t\t<div class="col-xs-12">\n\t\t\t\t<h2>Tracking</h2>\n\t\t\t\t\t<div class="row-fluid">\n\t\t\t\t\t\t<div class="col-xs-6 state">\n\t\t\t\t\t\t\t<h3>current state</h3>\n\n\t\t\t\t\t\t\t<span class="footprint">' +
 ((__t = ( data.footprint_total )) == null ? '' : __t) +
-' Kg CO<sub>2</sub></span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="col-xs-6 trend"><h3>your trend</h3>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t\t</div>\n\t\t\t\n\t\t\t\t</div>\n\t\t\t</a>\n\n    <a href="#shopping" class="row-fluid shopping">\n      <div class="col-xs-12">\n\t      <h2>Improve your shopping list</h2>\n\t\t\t\t\n\t\t\t\t<ul class="products">\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
+' Kg CO<sub>2</sub></span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="col-xs-6 trend"><h3>your trend</h3>\n\t\t\t\t\t\t\t<i class="fa fa-arrow-right"></i>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t\t</div>\n\t\t\t\n\t\t\t\t</div>\n\t\t\t</a>\n\n    <a href="#shopping" class="row-fluid shopping">\n      <div class="col-xs-12">\n\t      <h2>Improve your shopping list</h2>\n\t\t\t\t\n\t\t\t\t<ul class="products">\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
 ((__t = ( data[0].url )) == null ? '' : __t) +
 '\');"></li>\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
 ((__t = ( data[1].url )) == null ? '' : __t) +
