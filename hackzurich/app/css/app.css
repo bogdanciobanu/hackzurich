@@ -132,24 +132,6 @@ a.track, a.shopping, a.ranking {
 	margin: 0;
 }
 
-/*** Graph ***/
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: #d5ffcc;
-  stroke-width: 1.5px;
-}
 
 /*** Shapes ***/
 
