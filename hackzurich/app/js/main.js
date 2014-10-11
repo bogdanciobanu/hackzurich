@@ -17,9 +17,15 @@ MyApp.addInitializer(function(options){
 	MyApp.vent.trigger('routing:started');
 	Backbone.history.start();
 
+	Backbone.history.navigate('home', true);
+
 });
 
 $(document).ready(function() {
+
+	window.tracks = new TracksCollection();
+
+	window.list = new ListCollection();
 
 	MyApp.start();
 
