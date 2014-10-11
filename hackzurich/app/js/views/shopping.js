@@ -1,6 +1,9 @@
 ShoppingView = Backbone.Marionette.ItemView.extend({
 	template: 'shopping',
 	el: '#container',
+	// events: {
+	// 	'click': 
+	// },
     render: function() {
     	$(this.el).empty();
     	console.log('hi');
