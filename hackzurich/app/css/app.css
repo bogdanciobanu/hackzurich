@@ -21,7 +21,8 @@ h1 {
 	color: #99FA84;
 	font-size: 18px;
 	font-weight: 700;
-	letter-spacing: 0.25em;
+	letter-spacing: 0.5em;
+	margin: 15px 0;
 }
 
 h2 {
@@ -34,11 +35,19 @@ h3 {
 	color: #333;
 	font-size: 12px;
 	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.h1-slim {
+	font-weight: 400;
 }
 
 /*** header ***/
 .header {
 	background: #51B851;
+	box-shadow: 0 1px 1px 0 #0A790A;
+	position: relative;
+	z-index: 500;
 }
 
 .back {
@@ -52,12 +61,16 @@ h3 {
 	position: relative;
 }
 
-.track a, .shopping a, .ranking a {
+a.track, a.shopping, a.ranking {
 	display: block;
+	overflow: hidden;
 }
 
 .track {
 	background: #D5FFCC;
+	box-shadow: 0 1px 1px 0 #51B851;
+	position: relative;
+	z-index: 400;
 }
 
 .track .trend {
@@ -82,7 +95,7 @@ h3 {
 	padding-left: 0;
 	list-style: none;
 	overflow: hidden;
-	margin: 40px 0;
+	margin: 60px 0 30px;
 }
 
 .shopping .product {
@@ -134,7 +147,7 @@ h3 {
 
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: #d5ffcc;
   stroke-width: 1.5px;
 }
 
