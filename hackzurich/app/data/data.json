@@ -1,32 +1,24 @@
 [
     {
         "date": "20111001",
-        "mine": 190,
-	"kohler": 180,
-	"stoffer": 170
+        "close": 190
     },
     {
         "date": "20111014",
-        "mine": 70,
-	"kohler": 180,
-	"stoffer": 180
+        "close": 70
     },
     {
         "date": "20111023",
-        "mine": 190,
-	"kohler": 180,
-	"stoffer": 170
+        "close": 190
     },
 {
         "date": "20111024",
-        "mine": 170,
-	"kohler": 160,
-	"stoffer": 70
+        "close": 170
+
     },
 {
         "date": "20111025",
-        "mine": 120,
-	"kohler": 180,
-	"stoffer": 80
+        "close": 120
+
     }
 ]
