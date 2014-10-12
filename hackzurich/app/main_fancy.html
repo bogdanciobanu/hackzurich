@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Foodprint</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <link href="css/graphes.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container-fluid">
+    <header class="row-fluid header">
+      <h1>Foodprint</h1>
+    </header>
+
+    <section class="row-fluid track">
+		<h2>track
+		<div class="arrow arrow-white">
+		<i class="fa fa-chevron-right"></i>
+		</h2>
+		
+		<div class="span12">
+		<div class="row-fluid">
+				<div class="span6">
+				<h3>current state</h3>
+				
+				<div class="arrow arrow-white">
+				<i class="fa fa-chevron-right"></i>
+				</div>
+				<div class="span6"><h3>your trend</h3>
+				
+				<div class="arrow arrow-white">
+				<i class="fa fa-chevron-right"></i>
+				</div>
+			</div>
+		</div>
+    </section>
+    </section>
+
+    <section class="row-fluid shopping">
+      <h2>go shopping</h2>
+      <div class="span12">
+
+		<div class="arrow arrow-green">
+		<i class="fa fa-chevron-right"></i>
+      </div>
+    </section>
+
+
+    <section class="row-fluid ranking">
+		<h2>Your Rankings</h2>
+		<div class="span12">
+		
+		
+		<div class="arrow arrow-green">
+		<i class="fa fa-chevron-right"></i>
+		</div>
+      </div>
+    </section>
+
+
+ </div>
+
+	<!-- scripts -->
+	<script src="js/dist.js"></script>
+	<script>
+	var margin = {top: 20, right: 80, bottom: 30, left: 50},
+		width = 960 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
+
+	var parseDate = d3.time.format("%Y%m%d").parse;
+
+	var x = d3.time.scale()
+		.range([0, width]);
+
+	var y = d3.scale.linear()
+		.range([height, 0]);
+
+	var color = d3.scale.category10();
+
+	var xAxis = d3.svg.axis()
+		.scale(x)
+		.ticks(4)
+		.orient("bottom");
+
+	var yAxis = d3.svg.axis()
+		.scale(y)
+		.ticks(4)
+		.orient("left");
+
+	var line = d3.svg.line()
+		.interpolate("basis")
+		.x(function(d) { return x(d.date); })
+		.y(function(d) { return y(d.amount); });
+		
+	//areastuff
+	var  area1 = d3.svg.area()
+	.interpolate("basis")
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.mine); });
+	
+		var  area2 = d3.svg.area()
+	.interpolate("basis")
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.kohler); });
+	
+		var  area3 = d3.svg.area()
+	.interpolate("basis")
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.stoffer); });
+	
+
+
+
+	var svg = d3.select("body").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	d3.json("data/data.json", function(error, data) {
+	  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
+
+	  data.forEach(function(d) {
+		d.date = parseDate(d.date);
+		d.mine = +d.mine;
+	  });
+
+	  var users = color.domain().map(function(name) {
+		return {
+		  name: name,
+		  values: data.map(function(d) {
+			return {date: d.date, amount: +d[name]};
+		  })
+		};
+	  });
+
+	  x.domain(d3.extent(data, function(d) { return d.date; }));
+
+	  y.domain([
+		d3.min(users, function(c) { return d3.min(c.values, function(v) { return v.amount; }); }),
+		d3.max(users, function(c) { return d3.max(c.values, function(v) { return v.amount; }); }),
+		
+		//areastuff
+		d3.extent(data, function(d) { return d.mine; })
+	  
+	  ]);
+
+	  
+	 
+	 //areastuff
+	  svg.append("linearGradient")
+      .attr("id", "mine-gradient")
+      .attr("gradientUnits", "userSpaceOnUse")
+      .attr("x1", 0).attr("y1", y(90))
+      .attr("x2", 0).attr("y2", y(150))
+    .selectAll("stop")
+      .data([
+        {offset: "0%", color: "green"},
+        {offset: "50%", color: "orange"},
+        {offset: "100%", color: "red"}
+      ])
+    .enter().append("stop")
+      .attr("offset", function(d) { return d.offset; })
+      .attr("stop-color", function(d) { return d.color; });
+
+	  
+	  svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis);
+		 
+
+	  svg.append("g")
+		  .attr("class", "y axis")
+		  .call(yAxis)
+		.append("text")
+		  .attr("transform", "rotate(-90)")
+		  .attr("y", 6)
+		  .attr("dy", ".71em")
+		  .style("text-anchor", "end")
+		  .text("C02 (kg)");
+		  
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area1);
+
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area2);
+
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area3);
+
+		
+		var friends = svg.selectAll(".friends")
+		  .data(users)
+		.enter().append("g")
+		  .attr("class", "friends");
+
+		friends.append("path")
+		  .attr("class", "line")
+		  .attr("d", function(d) { return line(d.values); })
+		  .style("stroke", function(d) { return color(green); });
+
+		friends.append("text")
+		  .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })
+		  .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.amount) + ")"; })
+		  .attr("x", 3)
+		  .attr("dy", ".35em")
+		  .text(function(d) { return d.name; });
+		
+
+	});
+
+	</script>
+
+</body>
+</html>
