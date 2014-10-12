@@ -98,10 +98,23 @@
 		.y(function(d) { return y(d.amount); });
 		
 	//areastuff
-	var  area = d3.svg.area()
+	var  area1 = d3.svg.area()
+	.interpolate("basis")
 	.x(function(d) { return x(d.date); })
 	.y0(height)
-	.y1(function(d) { return y(d.colortemp); });
+	.y1(function(d) { return y(d.mine); });
+	
+		var  area2 = d3.svg.area()
+	.interpolate("basis")
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.kohler); });
+	
+		var  area3 = d3.svg.area()
+	.interpolate("basis")
+	.x(function(d) { return x(d.date); })
+	.y0(height)
+	.y1(function(d) { return y(d.stoffer); });
 	
 
 
@@ -117,7 +130,7 @@
 
 	  data.forEach(function(d) {
 		d.date = parseDate(d.date);
-		d.colortemp = +d.colortemp;
+		d.mine = +d.mine;
 	  });
 
 	  var users = color.domain().map(function(name) {
@@ -136,7 +149,7 @@
 		d3.max(users, function(c) { return d3.max(c.values, function(v) { return v.amount; }); }),
 		
 		//areastuff
-		d3.extent(data, function(d) { return d.colortemp; })
+		d3.extent(data, function(d) { return d.mine; })
 	  
 	  ]);
 
@@ -144,23 +157,20 @@
 	 
 	 //areastuff
 	  svg.append("linearGradient")
-      .attr("id", "colortemp-gradient")
+      .attr("id", "mine-gradient")
       .attr("gradientUnits", "userSpaceOnUse")
-      .attr("x1", 0).attr("y1", y(50))
-      .attr("x2", 0).attr("y2", y(60))
+      .attr("x1", 0).attr("y1", y(90))
+      .attr("x2", 0).attr("y2", y(150))
     .selectAll("stop")
       .data([
-        {offset: "0%", color: "steelblue"},
-        {offset: "50%", color: "gray"},
+        {offset: "0%", color: "green"},
+        {offset: "50%", color: "orange"},
         {offset: "100%", color: "red"}
       ])
     .enter().append("stop")
       .attr("offset", function(d) { return d.offset; })
       .attr("stop-color", function(d) { return d.color; });
-	  
-	  
-	  
-	  
+
 	  
 	  svg.append("g")
 		  .attr("class", "x axis")
@@ -182,7 +192,19 @@
 		  svg.append("path")
 		.datum(data)
 		.attr("class", "area")
-		.attr("d", area);
+		.attr("d", area1);
+
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area2);
+
+		  //areastuff
+		  svg.append("path")
+		.datum(data)
+		.attr("class", "area")
+		.attr("d", area3);
 
 		
 		var friends = svg.selectAll(".friends")
@@ -193,7 +215,7 @@
 		friends.append("path")
 		  .attr("class", "line")
 		  .attr("d", function(d) { return line(d.values); })
-		  .style("stroke", function(d) { return color(d.name); });
+		  .style("stroke", function(d) { return color(green); });
 
 		friends.append("text")
 		  .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; })

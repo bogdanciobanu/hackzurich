@@ -16,8 +16,9 @@
 }
 
 .area {
-  fill: url(#colortemp-gradient);
+  fill: url(#mine-gradient);
   stroke-width: 05px;
+  opacity: 0.3;
 }
 
 /*** areastuff 
