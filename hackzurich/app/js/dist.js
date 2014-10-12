@@ -9355,10 +9355,8 @@ HomeView = Backbone.Marionette.ItemView.extend({
     	$(this.el).empty();
     	window.headerView.model = new DataModel({'title': 'Carbon<span class="h1-slim">Less</span>', 'back': '', 'visible': ''});
     	window.headerView.render();
-    	console.log(window.app);
     	var jsonData = {};
     	$.extend(jsonData, window.recommendation.toJSON(), window.app.toJSON());
-    	console.log(jsonData);
 		$(this.el).append(window.JST[this.template]({data: jsonData}));
     }
 });
@@ -9379,17 +9377,25 @@ RankingsView = Backbone.Marionette.ItemView.extend({
 ShoppingView = Backbone.Marionette.ItemView.extend({
 	template: 'shopping',
 	el: '#container',
-	// events: {
-	// 	'click': 
-	// },
+	events: {
+		'click #button-add': 'addItem'
+	},
+	addItem: function() {
+		console.log($('#input-item').val());
+		window.list.add({'name': $('#input-item').val()});
+	},
     render: function() {
     	$(this.el).empty();
     	console.log('hi');
+    	window.list.add({'name': 'Test'});
     	window.headerView.model = new DataModel({'title': 'Shopping list', 'back': '#home', 'visible': 'visible'});
     	window.headerView.render();
     	console.log(window.JST[this.template]());
+    	console.log(window.list);
+    	window.jsonData = {'recommendation': window.recommendation.toJSON(), 'list': window.list.toJSON()};
+    	// console.log(jsonData);
 		// $(this.el).append(window.JST[this.template](this.model.toJSON()));
-		$(this.el).append(window.JST[this.template]());
+		$(this.el).append(window.JST[this.template](window.jsonData));
     }
 });
 TrackView = Backbone.Marionette.ItemView.extend({
@@ -9523,7 +9529,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '    <a class="row-fluid track" href="#tracks">\n\t\t\t<div class="col-xs-12">\n\t\t\t\t<h2>Tracking</h2>\n\t\t\t\t\t<div class="row-fluid">\n\t\t\t\t\t\t<div class="col-xs-6 state">\n\t\t\t\t\t\t\t<h3>current state</h3>\n\n\t\t\t\t\t\t\t<span class="footprint">' +
 ((__t = ( data.footprint_total )) == null ? '' : __t) +
-' Kg CO<sub>2</sub></span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="col-xs-6 trend"><h3>your trend</h3>\n\t\t\t\t\t\t\t<i class="fa fa-arrow-right"></i>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t\t</div>\n\t\t\t\n\t\t\t\t</div>\n\t\t\t</a>\n\n    <a href="#shopping" class="row-fluid shopping">\n      <div class="col-xs-12">\n\t      <h2>Improve your shopping list</h2>\n\t\t\t\t\n\t\t\t\t<ul class="products">\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
+' Kg CO<sub>2</sub></span>\n\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class="col-xs-6 trend"><h3>your inclination</h3>\n\t\t\t\t\t\t\t<i class="fa fa-arrow-right"></i>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div class="arrow arrow-white">\n\t\t\t\t\t\t<i class="fa fa-chevron-right"></i>\n\t\t\t\t\t</div>\n\t\t\t\n\t\t\t\t</div>\n\t\t\t</a>\n\n    <a href="#shopping" class="row-fluid shopping">\n      <div class="col-xs-12">\n\t      <h2>Improve your shopping list</h2>\n\t\t\t\t\n\t\t\t\t<ul class="products">\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
 ((__t = ( data[0].url )) == null ? '' : __t) +
 '\');"></li>\n\t\t\t\t\t<li class="product" style="background-image: url(\'' +
 ((__t = ( data[1].url )) == null ? '' : __t) +
@@ -9551,7 +9557,9 @@ this["JST"]["shopping"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<section class="row-fluid shopping">\n\t<div class="col-xs-12">\n\t\t<h2>Add Items</h2>\n\t\t<form id="list">\n\t\t\t<input type="text" placeholder="Item Name..." name="item" id="item" class="form-control" />\n\t\t</form>\n\t</div>\n</section>';
+__p += '<section class="row-fluid shopping">\n\t<div class="col-xs-12">\n\t\t<h2>Your List</h2>\n\t</div>\n\t\t<form id="list">\n\t\t\t<div class="col-xs-10">\n\t\t\t\t\t<input type="text" placeholder="Add an Item..." name="input-item" id="input-item" class="form-control" />\n\t\t\t</div>\n\t\t\t<div class="col-xs-2">\n\t\t\t\t\t<button type="button" class="form-control btn-main fa fa-plus" id="button-add"></button>\n\t\t\t</div>\n\t\t</form>\n\n\t' +
+((__t = ( recommendation )) == null ? '' : __t) +
+'\n\n</section>';
 
 }
 return __p
