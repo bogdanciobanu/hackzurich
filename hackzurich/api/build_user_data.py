@@ -13,7 +13,6 @@ def build_user_data(request, **kwargs):
 
     api = MigrosApiClient()
     receipts = api.get_receipts_for_client_id(client_id)
-    print len(receipts)
     for receipt_id in receipts:
         new_receipt = Receipt(migros_id=receipt_id,
                               timestamp=receipts[receipt_id]['timestamp'],
@@ -21,11 +20,7 @@ def build_user_data(request, **kwargs):
                               co2=receipts[receipt_id]['co2'],
                               client_id=receipts[receipt_id]['client_id'])
         new_receipt.save()
-        print 'posibile'
-        print (new_receipt.items)
         for item_id in new_receipt.items:
-            print 'filtrare'
-            print Product.objects.filter(ean=item_id)
             if len(Product.objects.filter(ean=item_id)) != 0:
                 continue
             try:
@@ -39,7 +34,5 @@ def build_user_data(request, **kwargs):
             if 'co2' in item:
                 product.co2 = item['co2']
             product.save()
-            print 'salvat'
-            print product.ean
 
     return HttpResponse({})

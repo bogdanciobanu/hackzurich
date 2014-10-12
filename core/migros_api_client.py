@@ -3,8 +3,6 @@ import dateutil
 import random
 import requests
 
-from mongomodels.product import Product
-from mongomodels.receipt import Receipt
 
 API_URL = 'http://private-anon-6b925091a-hackzurich2014.apiary-proxy.com'
 

@@ -16,6 +16,8 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('hackzurich.api.build_user_data',
                         url(r'^api/1.0/(?P<client_id>.*)/build_data', 'build_user_data'))
+urlpatterns += patterns('hackzurich.api.alternative_product',
+                        url(r'^api/1.0/(?P<client_id>.*)/alternatives', 'generate_alternatives'))
 urlpatterns += patterns('',
                         (r'^api/', include(receipt_resource_api.urls)),
                          )

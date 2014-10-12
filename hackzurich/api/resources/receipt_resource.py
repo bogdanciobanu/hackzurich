@@ -42,5 +42,4 @@ class ReceiptResource(MongoDBResource):
                 continue
             if document[field]:
                 result[field] = document[field]
-        print result
         return result
