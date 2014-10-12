@@ -149,8 +149,9 @@ a.track, a.shopping, a.ranking {
 
 .arrow-white {
 	background-color: #fff;	
-}	
-.arrow-green {	
+}
+
+.arrow-green {
 	background-color: #d5ffcc;
 }
 
@@ -163,4 +164,23 @@ a.track, a.shopping, a.ranking {
 	font-size: 30px;
 	margin-right: 20px;
 	color: #51B851;
+}
+
+/*** Buttons & Forms ***/
+
+.btn-main {
+	border: none;
+	border-radius: 50px;
+	box-shadow: 0 0 0 0;
+	color: #51B851;
+	font-size: 20px;
+	height: 40px;
+	width: 40px;
+}
+
+input[type='text'], #input-item {
+	border: none;
+	box-shadow: 0 1px 1px 0 #50BC4C inset;
+	color: #333;
+	height: 40px;
 }

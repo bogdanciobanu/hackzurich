@@ -1,8 +1,16 @@
 <section class="row-fluid shopping">
 	<div class="col-xs-12">
-		<h2>Add Items</h2>
-		<form id="list">
-			<input type="text" placeholder="Item Name..." name="item" id="item" class="form-control" />
-		</form>
+		<h2>Your List</h2>
 	</div>
+		<form id="list">
+			<div class="col-xs-10">
+					<input type="text" placeholder="Add an Item..." name="input-item" id="input-item" class="form-control" />
+			</div>
+			<div class="col-xs-2">
+					<button type="button" class="form-control btn-main fa fa-plus" id="button-add"></button>
+			</div>
+		</form>
+
+	<%= recommendation %>
+
 </section>
